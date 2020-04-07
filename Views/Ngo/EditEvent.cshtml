@@ -1,0 +1,243 @@
+﻿@model Charityyy.Models.Event_Creation
+@{
+    ViewBag.Title = "Update Event";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+
+    <div class="main-content">
+        <div class="container-fluid" style="padding-top:30px;padding-bottom:30px">
+            @*@if (ViewBag.msg != null)
+                {
+                    <div class="alert alert-success">
+                        <strong>Success!</strong> @ViewBag.msg
+                    </div>
+                }*@
+
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-md-6">
+                    <div id="map" style="height:800px"></div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 col-md-push-3">
+                            <form name="myForm" class="addEvent-form" method="post" enctype="multipart/form-data">
+                                <div class="icon-box mb-0 p-0">
+                                    <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                        <i class="pe-7s-users"></i>
+                                    </a>
+                                    <h4 class="text-gray pt-10 mt-0 mb-30">Edit event</h4>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        @*Event ID Hiddent ATTR*@
+                                        <input type="hidden" name="event_id" value="@Model.event_id" />
+                                        <label for="location_lat_id">Location Latitude</label>
+                                        <input id="location_lat_id" name="" disabled class="form-control" type="text" value="@Model.location_lat">
+                                        <input type="hidden" id="location_lat" name="location_lat" value="@Model.location_lat" />
+                                        <span id="location_lat_msg"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="location_long_id">Location Longitude</label>
+                                        <input id="location_long_id" name="" required disabled class="form-control" type="text" value="@Model.location_long">
+                                        <input type="hidden" id="location_long" name="location_long" value="@Model.location_long" />
+                                        <span id="location_long_msg"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="event_desc">Description</label>
+                                        <textarea required name="event_desc" class="form-control">@Model.description</textarea>
+                                        <span id="event_desc_msg"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="event_title">Event Title:</label>
+                                        <input type="text" required name="event_title" class="form-control" value="@Model.title">
+                                        <span id="event_title_msg"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="event_address">Address</label>
+                                        <textarea required name="event_address" class="form-control">@Model.address</textarea>
+                                        <span id="event_address_msg"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="event_date">Event Date</label>
+                                        <input id="event_date" required name="event_date" class="form-control" type="date" value="@Model.start_date">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="event_time">Event Time</label>
+                                        <input id="event_time" required name="event_time" class="form-control" type="time" value="@Model.start_time">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="event_duration">Event Duration</label>
+                                        <input id="event_duration" required name="event_duration" class="form-control" type="number" value="@Model.duration">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="event_type">Event Type</label>
+                                        <select name="event_type" required class="form-control">
+                                            @if (Model.event_type.Equals("Roads"))
+                                            {
+                                                <option value="Roads" selected>Roads</option>
+                                                <option value="Markets">Markets</option>
+                                                <option value="Beaches">Beaches</option>
+                                                <option value="Streets">Streets</option>
+                                            }
+                                            else if (Model.event_type.Equals("Markets"))
+                                            {
+                                                <option value="Roads">Roads</option>
+                                                <option value="Markets" selected>Markets</option>
+                                                <option value="Beaches">Beaches</option>
+                                                <option value="Streets">Streets</option>
+                                            }
+                                            else if (Model.event_type.Equals("Beaches"))
+                                            {
+                                                <option value="Roads">Roads</option>
+                                                <option value="Markets">Markets</option>
+                                                <option value="Beaches" selected>Beaches</option>
+                                                <option value="Streets">Streets</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="Roads">Roads</option>
+                                                <option value="Markets">Markets</option>
+                                                <option value="Beaches">Beaches</option>
+                                                <option value="Streets" selected>Streets</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type="hidden" value="started" name="event_status"/>
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label>No of People Required:</label>
+                                        <input required name="people_required" class="form-control" type="number" value="@Model.people_required" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label>Event Image</label>
+                                        <input required name="event_image" class="form-control" type="file" value="~/EventImages/@Model.title/@Model.event_image" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button id="btn_submit" class="btn btn-dark btn-lg btn-block mt-15" type="submit">Edit Event</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+
+
+
+    <script>
+        function showPosition(position) {
+            //console.log("Latitude: " + position.coords.latitude +
+            //    "<br>Longitude: " + position.coords.longitude);
+            let currentLocation = { lat: position.coords.latitude, lng: position.coords.longitude }
+            map.panTo(currentLocation)
+        }
+        var geocoder;
+
+        //function to remove markers
+        var markersArray = [];
+        function clearOverlays() {
+            for (var i = 0; i < markersArray.length; i++) {
+                markersArray[i].setMap(null);
+            }
+            markersArray.length = 0;
+        }
+
+        //function to geo code address
+        function geoCode() {
+            var address = "Saddar"
+            geocoder.geocode({ 'address': address, region: 'PK' }, function (results, status) {
+                if (status === 'OK') {
+                    resultsMap.setCenter(results[0].geometry.location)
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    })
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status)
+                }
+            });
+        }
+
+
+        function initMap() {
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+                //currentPosition = {
+                //    lat: navigator.geolocation.currentPosition,
+                //    lng: navigator.geolocation.currentPosition.lng
+                //};
+            }
+            window.map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 15
+            });
+            geocoder = new google.maps.Geocoder();
+            geoCode()
+            //map.panTo(currentPosition);
+            var marker = new google.maps.Marker({
+                position: { lat: -34.397, lng: 150.644 },
+                map: window.map,
+                title: 'Click to zoom'
+            });
+
+            //map click event
+            window.map.addListener('click', function (e) {
+
+
+                document.getElementById("btn_submit").disabled = false
+                document.getElementById("location_lat").value = e.latLng.lat().toString()
+                document.getElementById("location_long").value = e.latLng.lng().toString()
+                document.getElementById("location_lat_id").value = e.latLng.lat().toString()
+                document.getElementById("location_long_id").value = e.latLng.lng().toString()
+                placeMarkerAndPanTo(e.latLng);
+                //placeMarkerAndPanTo(e.lat, map);
+            });
+        }
+        function placeMarkerAndPanTo(latLng, map) {
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: window.map
+            });
+            clearOverlays();
+            markersArray.push(marker);
+            window.map.panTo(latLng);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6OcGxquigiea0qZRExpvU1i7xr5uPJow&region=PK&callback=initMap">
+    </script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6OcGxquigiea0qZRExpvU1i7xr5uPJow&callback=initMap"
+        async defer></script>*@
+</body>
+
+
+

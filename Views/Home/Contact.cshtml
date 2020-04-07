@@ -1,0 +1,320 @@
+﻿@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<!-- Mirrored from html.kodesolution.live/m/echarity/v2/demo/index-mp-layout1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 Oct 2019 13:03:15 GMT -->
+<head>
+
+    <!-- Meta Tags -->
+    <!-- Page Title -->
+    <title>Convene to Clean </title>
+
+    <!-- Favicon and Touch Icons -->
+    <link href="~/Content/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="~/Content/images/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="~/Content/images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="~/Content/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="~/Content/images/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+
+    <!-- Stylesheet -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/css/css-plugin-collections.css" rel="stylesheet" />
+    <!-- CSS | menuzord megamenu skins -->
+    <link id="menuzord-menu-skins" href="~/Content/css/menuzord-skins/menuzord-boxed.css" rel="stylesheet" />
+    <!-- CSS | Main style file -->
+    <link href="~/Content/css/style-main.css" rel="stylesheet" type="text/css">
+
+    <!-- CSS | Theme Color -->
+
+    <link href="~/Content/css/colors/theme-skin-orange.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Preloader Styles -->
+    <link href="~/Content/css/preloader.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Custom Margin Padding Collection -->
+    <link href="~/Content/css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Responsive media queries -->
+    <link href="~/Content/css/responsive.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+    <!-- <link href="css/style.css" rel="stylesheet" type="text/css"> -->
+    <!-- Revolution Slider 5.x CSS settings -->
+    <link href="~/Content/js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/js/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="~/Content/js/jquery-2.2.4.min.js"></script>
+    <script src="~/Content/js/jquery-ui.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+    <script src="~/Content/js/jquery-plugin-collection.js"></script>
+
+    <script src="~/Content/js/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Content/js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+
+
+</head>
+<body class="">
+    <div id="wrapper">
+        <!-- preloader -->
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top bg-theme-colored sm-text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="widget no-border m-0">
+                                <ul class="styled-icons icon-dark icon-theme-colored icon-sm sm-text-center">
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="widget no-border m-0">
+                                <ul class="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
+                                    <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-white"></i> <a class="text-white" href="#">123-456-789</a> </li>
+                                    <li class="text-white m-0 pl-10 pr-10"> <i class="fa fa-clock-o text-white"></i> Mon-Fri 8:00 to 2:00 </li>
+                                    <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-white"></i> <a class="text-white" href="#">contact@yourdomain.com</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-2">
+                          <div class="widget no-border m-0">
+                            <ul class="list-inline pull-right flip sm-pull-none sm-text-center mt-5">
+                              <li class="mt-sm-10 mb-sm-10">
+
+                                <a class="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10" href="login-register.html">NGO</a>
+                              </li>
+                              <li class="mt-sm-10 mb-sm-10">
+                                <a class="btn btn-default btn-flat btn-xs bg-light p-5 font-11 pl-10 pr-10" href="login-register.html">Volunteer</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="header-nav">
+                <div class="header-nav-wrapper navbar-scrolltofixed bg-white">
+                    <div class="container">
+                        <nav id="menuzord-right" class="menuzord green no-bg">
+                            <a class="menuzord-brand pull-left flip" href="javascript:void(0)"><img src="~/Content/images/logo-wide.png" alt=""></a>
+                            <ul class="menuzord-menu">
+                                <li class="">
+
+                                    <a href="@Url.Action("Index","Home")">Home</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("page_running_projects", "Home")">Past Projects</a>
+
+                                </li>
+                                <!--  <li>
+                                    <a href="@Url.Action("page_running_projects_details", "Home")">Upcoming Events</a>
+
+                                </li>-->
+
+                                <li>
+                                    <a href="@Url.Action("About", "Home")">About us</a>
+
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Contact", "Home")">Contact Us</a>
+
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <BR>
+            <div class="section-title text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h2 class="text-uppercase font-28 mt-0"><span class="text-theme-colored">Contact</span> Us</h2>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Section: Contact -->
+            <section data-bg-img="~/Content/images/pattern/p4.png">
+                <div class="container">
+
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <!-- Contact Form -->
+                                <form id="contact_form" name="contact_form" class="contact-form-transparent" action="http://html.kodesolution.live/m/echarity/v2/demo/includes/sendmail.php" method="post">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Name <small>*</small></label>
+                                                <input name="form_name" class="form-control" type="text" placeholder="Enter Name" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Email <small>*</small></label>
+                                                <input name="form_email" class="form-control required email" type="email" placeholder="Enter Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Subject <small>*</small></label>
+                                                <input name="form_subject" class="form-control required" type="text" placeholder="Enter Subject">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                <input name="form_phone" class="form-control" type="text" placeholder="Enter Phone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Message</label>
+                                        <textarea name="form_message" class="form-control required" rows="5" placeholder="Enter Message"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="form_botcheck" class="form-control" type="hidden" value="" />
+                                        <button type="submit" class="btn btn-dark btn-theme-colored btn-flat btn-block" data-loading-text="Please wait...">Send your message</button>
+                                    </div>
+                                </form>
+
+                                <!-- Section: Have Any Question -->
+                                <section class="divider">
+                                    <div class="container pt-60 pb-60">
+                                        <div class="section-title mb-60">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="esc-heading small-border text-center">
+                                                        <h3>Have any Questions?</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-content">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-4">
+                                                    <div class="contact-info text-center">
+                                                        <i class="fa fa-phone font-36 mb-10 text-theme-colored"></i>
+                                                        <h4>Call Us</h4>
+                                                        <h6 class="text-gray">Phone: +92 21 3457865</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-4">
+                                                    <div class="contact-info text-center">
+                                                        <i class="fa fa-map-marker font-36 mb-10 text-theme-colored"></i>
+                                                        <h4>Address</h4>
+                                                        <h6 class="text-gray">121 King Street, Karachi</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-4">
+                                                    <div class="contact-info text-center">
+                                                        <i class="fa fa-envelope font-36 mb-10 text-theme-colored"></i>
+                                                        <h4>Email</h4>
+                                                        <h6 class="text-gray">you@yourdomain.com</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Contact Form Validation-->
+                                <script type="text/javascript">
+                $("#contact_form").validate({
+                  submitHandler: function(form) {
+                    var form_btn = $(form).find('button[type="submit"]');
+                    var form_result_div = '#form-result';
+                    $(form_result_div).remove();
+                    form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
+                    var form_btn_old_msg = form_btn.html();
+                    form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
+                    $(form).ajaxSubmit({
+                      dataType:  'json',
+                      success: function(data) {
+                        if( data.status == 'true' ) {
+                          $(form).find('.form-control').val('');
+                        }
+                        form_btn.prop('disabled', false).html(form_btn_old_msg);
+                        $(form_result_div).html(data.message).fadeIn('slow');
+                        setTimeout(function(){ $(form_result_div).fadeOut('slow') }, 6000);
+                      }
+                    });
+                  }
+                });
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer id="footer" class="bg-black-222">
+
+            <div class="footer-bottom bg-black-333">
+                <div class="container pt-20 pb-20">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="font-11 text-black-777 m-0">Copyright &copy;2019</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <div class="widget no-border m-0">
+                                <ul class="list-inline sm-text-center mt-5 font-12">
+                                    <li>
+                                        <a href="#">FAQ</a>
+                                    </li>
+                                    <li>|</li>
+                                    <li>
+                                        <a href="#">Help Desk</a>
+                                    </li>
+                                    <li>|</li>
+                                    <li>
+                                        <a href="#">Support</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    </div>
+    <!-- end wrapper -->
+    <!-- Footer Scripts -->
+    <!-- JS | Calendar Event Data -->
+    <script src="~/Content/js/calendar-events-data.js"></script>
+    <!-- JS | Custom script for all pages -->
+    <script src="~/Content/js/custom.js"></script>
+
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
+          (Load Extensions only on Local File Systems !
+           The following part can be removed on Server for On Demand Loading) -->
+    <script type="text/javascript" src="~/Content/js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+</body>
+
+<!-- Mirrored from html.kodesolution.live/m/echarity/v2/demo/index-mp-layout1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 Oct 2019 13:06:48 GMT -->
+</html>

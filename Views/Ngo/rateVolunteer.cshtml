@@ -1,0 +1,73 @@
+﻿@model Charityyy.Models.join_event_log
+@{
+    ViewBag.Title = "Rate Volunteer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="">
+    <div id="wrapper" class="clearfix">
+        <!-- Start main-content -->
+        <div class="main-content">
+
+            <!-- Section: inner-header -->
+            <section class="inner-header divider parallax layer-overlay overlay-white-8" data-bg-img="/Content/images/bg/bg1.jpg">
+                <div class="container pt-90 pb-50">
+                    <!-- Section Content -->
+                    <div class="section-content pt-100">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title text-theme-colored">Rate Volunteer</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            @if (ViewBag.msg != null)
+                            {
+                                <div class="alert alert-success">
+                                    <strong>Success!</strong> @ViewBag.msg
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-push-3">
+                            <form name="myForm" class="register-form" method="post" onsubmit="return (validate());">
+                                <div class="icon-box mb-0 p-0">
+                                    <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                        <i class="pe-7s-users"></i>
+                                    </a>
+                                    @{ var fullname = Model.volunteer.f_name + " " + Model.volunteer.l_name; }
+                                    <h4 class="text-gray pt-10 mt-0 mb-30">Rate @fullname for their services</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label>Score</label>
+                                        <input required placeholder="Leave a score out of 5" max="5" min="1" id="mobile" name="score" class="form-control" type="number">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="form_name">Remarks</label>
+                                        <textarea required maxlength="350" name="remarks" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button id="btnSubmit" class="btn btn-dark btn-lg btn-block mt-15" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+

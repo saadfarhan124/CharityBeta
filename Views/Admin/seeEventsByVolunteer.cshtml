@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Charityyy.Models.join_event_log>
+@{
+    ViewBag.Title = "View Events By Volunteer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="">
+    <div id="wrapper">
+
+        <div class="main-content">
+            <!-- Section: inner-header -->
+            <section>
+                <div class="container pt-100 pb-50">
+                    <!-- Section Content -->
+                    <div class="section-content pt-92">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title text-white"><span class="text-theme-colored" style="font-size: 2.5rem" ;>Our Past Projects</span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Section: Facilities -->
+            <section>
+                <div class="container">
+                    <div class="section-content">
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (var even_details in Model)
+                            {
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 mb-40">
+                                        <a class="image-popup-vertical-fit" title="Title Here 1" href="~/EventImages/@even_details.Event_Creation.title/@even_details.Event_Creation.event_image"><img src="~/EventImages/@even_details.Event_Creation.title/@even_details.Event_Creation.event_image" alt=""></a>
+                                        <h3>Cleaning Campaign At Nazimabad</h3>
+                                        <ul class="list theme-colored">
+                                            <li><strong>Location</strong> : @even_details.Event_Creation.address</li>
+                                            <li><strong>Date</strong> : @even_details.Event_Creation.start_date</li>
+                                            <li><strong>Project Duration</strong> : @even_details.Event_Creation.duration Hours</li>
+                                        </ul>
+                                        <a href="@Url.Action("page_running_projects_details", "Ngo", new { eventID = even_details.event_id })" class="btn btn-sm btn-theme-colored">Read more</a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 mb-40">
+                                    <h2>No events found</h2>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="~/Content/js/calendar-events-data.js"></script>
+
+</body>
+

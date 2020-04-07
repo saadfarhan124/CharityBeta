@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Charityyy.Models.volunteer>
+@{
+    ViewBag.Title = "View All Volunteers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div id="wrapper" class="clearfix">
+        <div class="main-content">
+            <section>
+                <div class="container">
+                    <div class="container-fluid">
+                        @if (ViewBag.msg != null)
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="alert alert-success">
+                                        <strong>@ViewBag.msg</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        <h4 class="title text-theme-colored text-center">All Volunteers</h4>
+                        <br />
+
+
+                        @if (Model.Count() > 0)
+                        {
+                            <table class="table table-dark">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Gender</th>
+                                        <th>Date Of Birth</th>
+                                        <th>CNIC NO</th>
+                                        <th>Last Signin</th>
+                                        <th>Ban Account</th>
+                                        <th>Enable Account</th>
+                                        <th>Send Warning</th>
+                                        <th>View Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var volunteer in Model)
+                                    {
+                                        <tr>
+                                            @{var fullname = volunteer.f_name + " " + volunteer.l_name;}
+                                            <td>@fullname </td>
+                                            <td>@volunteer.gender</td>
+                                            <td>@volunteer.dob</td>
+                                            <td>@volunteer.cnic_no</td>
+                                            <td>@volunteer.last_signin</td>
+                                            @if (volunteer.account_status.Equals("pending") || volunteer.account_status.Equals("banned"))
+                                            {
+                                                <td>@Html.ActionLink("Enable Account", "enableVolunteerAccount", "Admin", new { volunteerEmail = volunteer.email }, null)</td>
+                                                <td>@Html.ActionLink("Ban Account", "", "", null, new { @style = "color: #D3D3D3", onclick = "javascript:return false;" })</td>
+                                            }
+                                            else if (volunteer.account_status.Equals("activated"))
+                                            {
+                                                <td>@Html.ActionLink("Enable Account", "", "", null, new { @style = "color: #D3D3D3", onclick = "javascript:return false;" })</td>
+                                                <td>@Html.ActionLink("Ban Account", "banVolunteerAccount", "Admin", new { volunteerEmail = volunteer.email }, null)</td>
+
+                                            }
+                                            <td>@Html.ActionLink("Send Warning", "sendWarning", "Admin", new { email = volunteer.email, accountType = "volunteer" }, null)</td>
+
+                                            <td>@Html.ActionLink("See Details", "showVolunteerProfile", "Admin", new { volunteerEmail = volunteer.email }, null)</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <div class="alert ">
+                                <strong>Success!</strong>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+
+

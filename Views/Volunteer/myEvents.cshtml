@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Charityyy.Models.join_event_log>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Events";
+}
+
+<body class="">
+    <div id="wrapper" class="clearfix">
+        <!-- Start main-content -->
+        <div class="main-content">
+
+            <!-- Section: inner-header -->
+            <section class="inner-header divider parallax layer-overlay overlay-white-8" data-bg-img="/Content/images/bg/bg1.jpg">
+                <div class="container pt-90 pb-50">
+                    <!-- Section Content -->
+                    <div class="section-content pt-100">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title text-theme-colored">Events Suggestions</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            @if (ViewBag.msg != null)
+                            {
+                                <div class="alert alert-success">
+                                    <strong>@ViewBag.msg</strong> 
+                                </div>
+                            }
+
+
+                        </div>
+                        @if (Model != null)
+                        {
+                            foreach (var event_details in Model)
+                            {
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="container col-md-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 mb-40">
+                                            <a class="image-popup-vertical-fit" title="@event_details.Event_Creation.title" href="~/EventImages/@event_details.Event_Creation.title/@event_details.Event_Creation.event_image"><img src="~/EventImages/@event_details.Event_Creation.title/@event_details.Event_Creation.event_image" alt=""></a>
+                                            <h3>@event_details.Event_Creation.title</h3>
+                                            <ul class="list theme-colored">
+                                                <li><strong>Location</strong> : @event_details.Event_Creation.address</li>
+                                                <li><strong>Date</strong> : @Convert.ToDateTime(event_details.Event_Creation.start_date).Date</li>
+                                                <li><strong>Starting time</strong> : @event_details.Event_Creation.start_time</li>
+                                                <li><strong>Duration</strong> : @event_details.Event_Creation.duration</li>
+                                            </ul>
+                                            <ul class="list theme-colored">
+                                                <li><strong>Volunteers Required</strong> : @event_details..Event_Creationpeople_required</li>
+                                                <li><strong>Joined</strong> : @event_details.Event_Creation.people_joined</li>
+                                                <li><strong>Remaining</strong> : @event_details.Event_Creation.people_remaining</li>
+                                            </ul>
+                                            <a href="@Url.Action("eventDetails", "Volunteer", new { eventID = event_details.event_id })" class="btn btn-sm btn-theme-colored">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="container col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 mb-40">
+                                        <h3>No events found</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,188 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Volunteer Registration";
+}
+
+<body class="">
+    <div class="main-content">
+        <!-- Section: inner-header -->
+        <!-- Section: inner-header -->
+        <section>
+            <div class="container pt-100 pb-50">
+                <!-- Section Content -->
+                <div class="section-content pt-92">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title text-white"><span class="text-theme-colored" style="font-size: 2.5rem" ;>Register now as Volunteer!</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                @if (ViewBag.msg != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @ViewBag.msg
+                    </div>
+                }
+               
+                <div class="row">
+                    <div class="col-md-6 col-md-push-3">
+                        <form name="myForm" class="register-form" method="post" onsubmit="return (validate());">
+                            <div class="icon-box mb-0 p-0">
+                                <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                    <i class="pe-7s-users"></i>
+                                </a>
+                                <h4 class="text-gray pt-10 mt-0 mb-30">Don't have an Account? Register Now as Volunteer.</h4>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="form_name">First Name</label>
+                                    <input id="form_name" required name="first_name" class="form-control" type="text">
+                                    <span id="message2"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="form_name">Last Name</label>
+                                    <input id="form_name" required name="last_name" class="form-control" type="text">
+                                    <span id="message3"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="form_name">Gender</label>
+                                    <select required name="gender" class="form-control">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="form_name">Date of Birth</label>
+                                    <input required id="form_name" name="dob" class="form-control" type="date">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label>CNIC No</label>
+                                    <input required id="cnicform" onkeyup="verifycnic();" name="cnic" class="form-control" type="number">
+                                    <span id="message4">CNIC should be 13 digits long</span>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Email Address</label>
+                                    <input required id="form_email" name="email" validate class="form-control" type="email">
+                                    <span id="message1"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="form_name">Interested in cleaning: </label>
+                                    <select required name="interests" class="form-control">
+                                        <option value="Roads">Roads</option>
+                                        <option value="Markets">Markets</option>
+                                        <option value="Beaches">Beaches</option>
+                                        <option value="Streets">Streets</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Mobile No</label>
+                                    <input required placeholder="Enter your 10 digit mobile number" onkeyup="verifyMobile();"  id="mobile" name="mobile" class="form-control" type="number">
+                                    <span id="message5"></span>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Telephone No</label>
+                                    <input onkeyup="verifyTelephone();" required id="telephone" name="telephone" class="form-control" type="number">
+                                    <span id="message6"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="form_name">Address</label>
+                                    <textarea required maxlength="350" name="address" class="form-control"></textarea>
+                                    <span id="message7"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="form_name">Password</label>
+                                    <input required id="password" name="password" class="form-control" type="password" onkeyup='check()' ;>
+                                    <span id="message8"></span>
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="form_name">Comfirm Password</label>
+                                    <input required id="confirmpass" name="confirmpass" class="form-control" type="password" onkeyup='check()' ;>
+                                    <span id="message"></span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <button id="btnSubmit" class="btn btn-dark btn-lg btn-block mt-15" type="submit">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        function verifycnic() {
+            if (document.getElementById("cnicform").value.length == 13) {
+                document.getElementById("btnSubmit").disabled = false
+                document.getElementById("message4").innerHTML = ""
+
+            } else {
+                document.getElementById("message4").innerHTML = "CNIC should be 13 digits long"
+                document.getElementById("btnSubmit").disabled = true
+            }
+
+        }
+        function verifyMobile() {
+             if (document.getElementById("mobile").value.length == 10) {
+                  document.getElementById('message5').style.color = 'green';
+                 document.getElementById('message5').innerHTML = '';
+                 document.getElementById("btnSubmit").disabled = false
+            } else if(document.getElementById("mobile").value.length < 10){
+                 document.getElementById('message5').style.color = 'red';
+                 document.getElementById('message5').innerHTML = 'Enter 10 digit phone number!';
+                 document.getElementById("btnSubmit").disabled = true
+            }
+        }
+         function verifyTelephone() {
+             if (document.getElementById("telephone").value.length == 10) {
+                  document.getElementById('message6').style.color = 'green';
+                 document.getElementById('message6').innerHTML = '';
+                 document.getElementById("btnSubmit").disabled = false
+            } else if(document.getElementById("telephone").value.length < 10){
+                 document.getElementById('message6').style.color = 'red';
+                 document.getElementById('message6').innerHTML = 'Enter 10 digit phone number!';
+                 document.getElementById("btnSubmit").disabled = true
+            }
+        }
+         var check = function () {
+            if (document.getElementById('password').value ==
+                document.getElementById('confirmpass').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Passwords match';
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Passwords do not match!';
+            }
+        }
+      
+    </script>
+</body>

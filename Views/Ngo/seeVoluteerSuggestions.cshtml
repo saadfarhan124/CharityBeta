@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Charityyy.Models.volunteer>
+@{
+    ViewBag.Title = "Suggestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div id="wrapper" class="clearfix">
+        <div class="main-content">
+            <section>
+                <div class="container">
+                    <div class="container-fluid">
+                        @if (ViewBag.msg != null)
+                        {
+                            <div class="alert alert-success">
+                                <strong> @ViewBag.msg</strong>
+                            </div>
+                        }
+                        <h4 class="title text-theme-colored text-center">Suggestions</h4>
+                        <br />
+
+
+                        @if (Model.Count() > 0)
+                        {
+                            <table class="table table-dark">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Gender</th>
+                                        <th>Date Of Birth</th>
+                                        <th>CNIC NO</th>
+                                        <th>Email</th>
+                                        <th>See Details</th>
+                                        <th>Send Invite</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var volunteer in Model)
+                                    {
+                                    <tr>
+                                        @{var fullname = volunteer.f_name + " " + volunteer.l_name;}
+                                        <td>@fullname </td>
+                                        <td>@volunteer.gender</td>
+                                        <td>@volunteer.dob</td>
+                                        <td>@volunteer.cnic_no</td>
+                                        <td>@volunteer.email</td>
+                                        <td>@Html.ActionLink("See Details", "showVolunteerProfile", "Admin", new { volunteerEmail = volunteer.email }, null)</td>
+                                        
+                                        <td>@Html.ActionLink("Send Invite", "sendInvite", "Ngo", new { volunteerEmail = volunteer.email, eventID = ViewBag.eventID, volunteerID = volunteer.id, ngoEmail = ViewBag.ngoEmail }, null)</td>
+
+                                    </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <div class="alert ">
+                                <strong>No suggestions found!</strong>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+
+

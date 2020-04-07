@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Charityyy.Models.NonProfitOrganization>
+@{
+    ViewBag.Title = "View All NGOs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div id="wrapper" class="clearfix">
+        <div class="main-content">
+            <section>
+                <div class="container">
+                    <div class="container-fluid">
+                        @if (ViewBag.msg != null)
+                        {
+                            <div class="alert alert-success">
+                                <strong>@ViewBag.msg</strong> 
+                            </div>
+                        }
+                        <h4 class="title text-theme-colored text-center">All Non Profit Organizations</h4>
+                        <br />
+
+
+
+                        <table class="table table-dark">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>NGO Name</th>
+                                    <th>Contact Person</th>
+                                    <th>Designation</th>
+                                    <th>Email</th>
+                                    <th>Last SignIn</th>
+                                    <th>Account Status</th>
+                                    <th>Enable Account</th>
+                                    <th>Ban User</th>
+                                    <th>Send warning</th>
+                                    <th>See Profile</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var ngo in Model)
+                                {
+                                    <tr>
+                                        <td>@ngo.ngo_name </td>
+                                        <td>@ngo.contact_person</td>
+                                        <td>@ngo.designation</td>
+                                        <td>@ngo.email</td>
+                                        @{ var signIn = ngo.last_signin == null ? "-" : ngo.last_signin; }
+                                        <td>@signIn</td>
+                                        <td>@ngo.account_status</td>
+                                        @if (ngo.account_status.Equals("pending") || ngo.account_status.Equals("banned"))
+                                        {
+                                            <td>@Html.ActionLink("Enable Account", "enableNgoAccount", "Admin", new { ngoEmail = ngo.email }, null)</td>
+                                            <td>@Html.ActionLink("Ban Account", "", "", null, new { @style = "color: #D3D3D3", onclick = "javascript:return false;" })</td>
+                                        }
+                                        else if (ngo.account_status.Equals("activated"))
+                                        {
+                                            <td>@Html.ActionLink("Enable Account", "", "", new { ngoEmail = ngo.email }, new { @style = "color: #D3D3D3", onclick = "javascript:return false;" })</td>
+                                            <td>@Html.ActionLink("Ban Account", "banNgoAccount", "Admin", new { ngoEmail = ngo.email }, null)</td>
+
+                                        }
+                                        <td>@Html.ActionLink("Send Warning", "sendWarning", "Admin",  new {email = ngo.email, accountType = "ngo" }, null)</td>
+                                        <td>@Html.ActionLink("View Profile", "showNgoProfile", "Admin", new {ngoEmail = ngo.email }, null)</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+

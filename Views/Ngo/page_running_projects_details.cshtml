@@ -1,0 +1,118 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Projects";
+}
+@model Charityyy.Models.Event_Creation
+
+
+<body class="">
+    <!-- Start main-content -->
+    <div class="main-content">
+
+        <!-- Section: inner-header -->
+        <section>
+            <div class="container pt-100 pb-50">
+                <!-- Section Content -->
+                <div class="section-content pt-92">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title text-white"><span class="text-theme-colored" style="font-size: 2.5rem" ;>Past Project Detail</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section: Facilities -->
+        <section>
+            <div class="container">
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 mb-40">
+                            <a class="image-popup-vertical-fit" title="Title Here 1" href="~/EventImages/@Model.title/@Model.event_image"><img src="~/EventImages/@Model.title/@Model.event_image" alt=""></a>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 mb-40">
+                            <h3>@Model.title</h3>
+                            <ul class="list theme-colored">
+                                <li><strong>Location</strong> : @Model.address</li>
+                                <li><strong>Date</strong> : @Model.start_date</li>
+                                <li><strong>Project Duration</strong> : @Model.duration</li>
+                                <li><strong>Starting Time</strong> : @Model.start_time</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="line-bottom">Description</h3>
+                            @*<p class="lead">Lorem ipsum dolor sit amet, <span class="text-theme-colored">consectetur</span> adipisicing elit. Eos cum minima eligendi tempore unde autem ut nam quaerat quisquam, <span class="text-theme-colored">aspernatur ratione</span> quis voluptatum optio quidem eum molestias blanditiis.</p>*@
+                            <p>@Model.description</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="container-fluid">
+                    <h4 class="title text-theme-colored text-center">All Volunteers</h4>
+                    <br />
+                    @*@foreach(var item in Model.join_event_log.ToList())
+                        {
+                            <h4>@item.volunteer.interests</h4>
+                        }*@
+
+                    @if (Model.join_event_log.ToList().Count() > 0)
+                    {
+                        <table class="table table-dark">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Full Name</th>
+                                    <th>Gender</th>
+                                    <th>Date Of Birth</th>
+                                    <th>CNIC NO</th>
+                                    <th>View Details</th>
+                                    <th>Update Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var volunteer in Model.join_event_log.ToList())
+                                {
+                                    <tr>
+                                        @{var fullname = volunteer.volunteer.f_name + " " + volunteer.volunteer.l_name;}
+                                        <td>@fullname </td>
+                                        <td>@volunteer.volunteer.gender</td>
+                                        <td>@volunteer.volunteer.dob</td>
+                                        <td>@volunteer.volunteer.cnic_no</td>
+                                        <td>@Html.ActionLink("See Details", "showVolunteerProfile", "Admin", new { volunteerEmail = volunteer.volunteer.email }, null)</td>
+                                        <td>@Html.ActionLink("Leave a rating", "rateVolunteer", "Ngo", new { volunteerID = volunteer.volunteer.id, eventID = Model.event_id}, null)</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="alert ">
+                            <strong>No volunteers found!</strong>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+    <!-- end main-content -->
+
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    <!-- end wrapper -->
+    <!-- Footer Scripts -->
+    <!-- JS | Calendar Event Data -->
+    <script src="~/Content/js/calendar-events-data.js"></script>
+    <!-- JS | Custom script for all pages -->
+    <script src="~/Content/js/custom.js"></script>
+</body>

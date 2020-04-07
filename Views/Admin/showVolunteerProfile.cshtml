@@ -1,0 +1,82 @@
+﻿@model Charityyy.Models.volunteer
+@{
+    ViewBag.Title = "Volunteer Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="">
+    <div id="wrapper" class="clearfix">
+        <!-- Start main-content -->
+        <div class="main-content">
+
+            <!-- Section: inner-header -->
+            <section class="inner-header divider parallax layer-overlay overlay-white-8" data-bg-img="/Content/images/bg/bg1.jpg">
+                <div class="container pt-90 pb-50">
+                    <!-- Section Content -->
+                    <div class="section-content pt-100">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title text-theme-colored">Volunteer PROFILE</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            @if (ViewBag.msg != null)
+                            {
+                                <div class="alert alert-success">
+                                    <strong>@ViewBag.msg</strong> 
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @{var fullname = Model.f_name + " " + Model.l_name;}
+                            <label><strong>Volunteer Name : </strong>@fullname</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><strong>Volunteer Email : </strong>@Model.email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label><strong>Volunteer Gender: </strong>@Model.gender</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><strong>Volunteer Date Of Birth: </strong>@Model.dob</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label><strong>Address : </strong>@Model.address</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label><strong>Mobile Number : </strong>@Model.mobile</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><strong>Area of Interest: </strong>@Model.interests</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="btn btn-dark btn-lg btn-block mt-15" type="button" value="View All Events" onclick="location.href='@Url.Action("seeEventsByVolunteer", "Admin", new { volunteerId = Model.id })'" />
+                        </div>
+                        <div class="col-md-6">
+                            <input class="btn btn-dark btn-lg btn-block mt-15" type="button" value="Back" onclick="location.href='@Url.Action("seeAllNgo", "Admin")'" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+

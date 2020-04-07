@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Projects";
+}
+@model Charityyy.Models.Event_Creation
+
+
+<body class="">
+    <!-- Start main-content -->
+    <div class="main-content">
+
+        <!-- Section: inner-header -->
+        <section>
+            <div class="container pt-100 pb-50">
+                <!-- Section Content -->
+                <div class="section-content pt-92">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title text-white"><span class="text-theme-colored" style="font-size: 2.5rem" ;>Event Details</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section: Facilities -->
+        <section>
+            <div class="container">
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 mb-40">
+                            <a class="image-popup-vertical-fit" title="Title Here 1" href="~/EventImages/@Model.title/@Model.event_image"><img src="~/EventImages/@Model.title/@Model.event_image" alt=""></a>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 mb-40">
+                            <h3>@Model.title</h3>
+                            <ul class="list theme-colored">
+                                <li><strong>Location</strong> : @Model.address</li>
+                                <li><strong>Date</strong> : @Model.start_date</li>
+                                <li><strong>Project Duration</strong> : @Model.duration</li>
+                                <li><strong>Starting Time</strong> : @Model.start_time</li>
+
+                            </ul>
+                            <input class="btn btn-dark btn-lg btn-block mt-15" type="button" value="Join Event" onclick="demo();" />
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="line-bottom">Description</h3>
+                            @*<p class="lead">Lorem ipsum dolor sit amet, <span class="text-theme-colored">consectetur</span> adipisicing elit. Eos cum minima eligendi tempore unde autem ut nam quaerat quisquam, <span class="text-theme-colored">aspernatur ratione</span> quis voluptatum optio quidem eum molestias blanditiis.</p>*@
+                            <p>@Model.description</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+    </div>
+    <!-- end main-content -->
+
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    <!-- end wrapper -->
+    <!-- Footer Scripts -->
+    <!-- JS | Calendar Event Data -->
+    <script src="~/Content/js/calendar-events-data.js"></script>
+    <!-- JS | Custom script for all pages -->
+    <script src="~/Content/js/custom.js"></script>
+    <script>
+        function demo() {
+            if (confirm('Are you sure you want to join this event?')) {
+                            location.href='@Url.Action("joinEvent", "Volunteer", new { eventID = Model.event_id })'
+            }
+        }
+    </script>
+</body>

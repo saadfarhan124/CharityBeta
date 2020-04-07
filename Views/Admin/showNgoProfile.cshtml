@@ -1,0 +1,81 @@
+﻿@model Charityyy.Models.NonProfitOrganization
+@{
+    ViewBag.Title = "NGO Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="">
+    <div id="wrapper" class="clearfix">
+        <!-- Start main-content -->
+        <div class="main-content">
+
+            <!-- Section: inner-header -->
+            <section class="inner-header divider parallax layer-overlay overlay-white-8" data-bg-img="/Content/images/bg/bg1.jpg">
+                <div class="container pt-90 pb-50">
+                    <!-- Section Content -->
+                    <div class="section-content pt-100">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title text-theme-colored">NGO PROFILE</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            @if (ViewBag.msg != null)
+                            {
+                                <div class="alert alert-success">
+                                    <strong>Success!</strong> @ViewBag.msg
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label><strong>NGO Name : </strong>@Model.ngo_name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><strong>NGO Email : </strong>@Model.email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label><strong>Contact Person : </strong>@Model.contact_person</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><strong>Contact Person Designation: </strong>@Model.designation</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label><strong>Address : </strong>@Model.address</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label><strong>Mobile Number : </strong>@Model.mobile_number</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><strong>Telephone Number: </strong>@Model.telephone_number</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="btn btn-dark btn-lg btn-block mt-15" type="button" value="View All Events" onclick="location.href='@Url.Action("seeEventsByNGo", "Admin", new { ngoEmail = Model.email })'" />
+                        </div>
+                        <div class="col-md-6">
+                            <input class="btn btn-dark btn-lg btn-block mt-15" type="button" value="Back" onclick="location.href='@Url.Action("seeAllNgo", "Admin")'" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+

@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Charityyy.Models.Event_Creation>
+@{
+    ViewBag.Title = "ViewPastProjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="">
+    <div id="wrapper" class="clearfix">
+        <!-- Start main-content -->
+        <div class="main-content">
+
+            <!-- Section: inner-header -->
+            <section class="inner-header divider parallax layer-overlay overlay-white-8" data-bg-img="/Content/images/bg/bg1.jpg">
+                <div class="container pt-90 pb-50">
+                    <!-- Section Content -->
+                    <div class="section-content pt-100">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title text-theme-colored">Past Events</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            @if (ViewBag.msg != null)
+                            {
+                                <div class="alert alert-success">
+                                    <strong>Success!</strong> @ViewBag.msg
+                                </div>
+                            }
+
+
+                        </div>
+
+                        @if (Model != null)
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="title text-theme-colored te">Approved</h3>
+                                </div>
+                            </div>
+                            foreach (var event_details in Model)
+                            {
+                                if (event_details.status.Equals("approve"))
+                                {
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="container col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 mb-40">
+                                                <a class="image-popup-vertical-fit" title="@event_details.title" href="~/EventImages/@event_details.title/@event_details.event_image"><img src="~/EventImages/@event_details.title/@event_details.event_image" alt=""></a>
+                                                <h3>@event_details.title</h3>
+                                                <ul class="list theme-colored">
+                                                    <li><strong>Location</strong> : @event_details.address</li>
+                                                    <li><strong>Date</strong> : @Convert.ToDateTime(event_details.start_date).Date</li>
+                                                    <li><strong>Starting time</strong> : @event_details.start_time</li>
+                                                    <li><strong>Duration</strong> : @event_details.duration</li>
+                                                    <li><strong>Event Status</strong> : @event_details.event_status</li>
+                                                </ul>
+                                                <ul class="list theme-colored">
+                                                    <li><strong>Volunteers Required</strong> : @event_details.people_required</li>
+                                                    <li><strong>Joined</strong> : @event_details.people_joined</li>
+                                                    <li><strong>Remaining</strong> : @event_details.people_remaining</li>
+                                                </ul>
+                                                <a href="@Url.Action("page_running_projects_details", "Ngo", new { eventID = event_details.event_id })" class="btn btn-sm btn-theme-colored">Read more</a>
+                                                <a href="@Url.Action("DeleteEvent", "Ngo", new { eventID = event_details.event_id })" class="btn btn-sm btn-theme-colored">Delete Event</a>
+                                                <a href="@Url.Action("EditEvent", "Ngo", new { eventID = event_details.event_id })" class="btn btn-sm btn-theme-colored">Edit Event</a>
+                                                <a href="@Url.Action("seeVoluteerSuggestions", "Ngo", new { eventLat = event_details.location_lat, eventLong = event_details.location_long, eventType = event_details.event_type, eventID = event_details.event_id })" class="btn btn-sm btn-theme-colored">Check Volunteer Suggestions</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="title text-theme-colored te">Approval Pending</h3>
+                                </div>
+                            </div>
+                            foreach (var event_details in Model)
+                            {
+                                if (event_details.status.Equals("unpublished"))
+                                {
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="container col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 mb-40">
+                                                <a class="image-popup-vertical-fit" title="@event_details.title" href="~/EventImages/@event_details.title/@event_details.event_image"><img src="~/EventImages/@event_details.title/@event_details.event_image" alt=""></a>
+                                                <h3>@event_details.title</h3>
+                                                <ul class="list theme-colored">
+                                                    <li><strong>Location</strong> : @event_details.address</li>
+                                                    <li><strong>Date</strong> : @Convert.ToDateTime(event_details.start_date).Date</li>
+                                                    <li><strong>Starting time</strong> : @event_details.start_time</li>
+                                                    <li><strong>Duration</strong> : @event_details.duration</li>
+                                                    <li><strong>Event Status</strong> : @event_details.event_status</li>
+                                                </ul>
+                                                <ul class="list theme-colored">
+                                                    <li><strong>Volunteers Required</strong> : @event_details.people_required</li>
+                                                    <li><strong>Joined</strong> : @event_details.people_joined</li>
+                                                    <li><strong>Remaining</strong> : @event_details.people_remaining</li>
+                                                </ul>
+                                                <a href="@Url.Action("page_running_projects_details", "Ngo", new { eventID = event_details.event_id })" class="btn btn-sm btn-theme-colored">Read more</a>
+                                                <a href="@Url.Action("DeleteEvent", "Ngo", new { eventID = event_details.event_id })" class="btn btn-sm btn-theme-colored">Delete Event</a>
+                                                <a href="@Url.Action("EditEvent", "Ngo", new { eventID = event_details.event_id })" class="btn btn-sm btn-theme-colored">Edit Event</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="container col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 mb-40">
+                                        <h3>No events found</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
